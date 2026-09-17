@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Cheese | Brush Creek Creamery</title>
+  <meta name="description" content="Select cheeses and submit an order request by email to Brush Creek Creamery in Deary, Idaho.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img src="https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/8e3c90cf-0cd8-4296-aa35-04b9bf840949.png" alt="Brush Creek Creamery" class="logo-img"></a>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="cheeses.html">Our Cheeses</a>
+        <a href="story.html">Our Story</a>
+        <a href="awards.html">Awards</a>
+        <a href="order.html" class="active">Order</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero" style="padding: 3rem 0 2rem;">
+    <div class="container hero-content">
+      <span class="tagline">Order</span>
+      <h1>Build your order</h1>
+      <p>Add the cheeses you want, fill in your details, and we’ll receive your request by email. We’ll confirm availability, total, and shipping or pickup.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 style="color: var(--deep-brown); margin-bottom: 1.25rem; font-size: 1.35rem;">Select Cheeses</h2>
+      <div class="order-grid" id="orderItems">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="order-summary" id="orderSummary">
+        <h3>Order Summary</h3>
+        <div id="summaryLines"><p style="color: var(--muted);">No items selected yet.</p></div>
+        <div class="total" id="summaryTotal" style="display: none;">Estimated total: $<span>0</span></div>
+      </div>
+
+      <div class="order-form">
+        <h3>Your Information</h3>
+        <form id="orderForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(208) 555-0123">
+            </div>
+            <div class="form-group">
+              <label for="fulfillment">Pickup or Shipping *</label>
+              <select id="fulfillment" name="fulfillment" required>
+                <option value="">Select…</option>
+                <option value="Pickup in Deary">Pickup in Deary (307 Main St)</option>
+                <option value="Shipping">Shipping (we’ll confirm rates)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Shipping Address (if applicable)</label>
+            <textarea id="address" name="address" placeholder="Street, City, State, ZIP"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes / Special Requests</label>
+            <textarea id="notes" name="notes" placeholder="Preferred delivery date, gift message, etc."></textarea>
+          </div>
+          <p class="form-note">
+            Clicking “Send Order Request” opens your email app with a pre-filled message to <strong>info@brushcreekcreamery.com</strong>. 
+            You can review and send it. Prices shown are current retail. Availability and shipping will be confirmed by the creamery.
+          </p>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Send Order Request by Email</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <h4>Brush Creek Creamery</h4>
+          <p>Handcrafted artisan cheese<br>in the mountains of Idaho</p>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <p>307 Main St, Deary, ID 83823</p>
+          <p>Tue–Fri 7–2 · Sat 7–5</p>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p><a href="mailto:info@brushcreekcreamery.com">info@brushcreekcreamery.com</a></p>
+          <p>(208) 596-8571</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2016–2026 Brush Creek Creamery, LLC · Idaho Grade A Dairy Plant #16-96
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Exact prices provided by owner
+    const products = [
+      { id: 'labneh', name: 'Marinated Labneh (9 oz jar)', price: 15, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/01710366-d170-4ebb-bf61-8b8be5b7625b.jpg' },
+      { id: 'orchard-blue', name: 'Orchard Blue (1/2 lb wedge)', price: 16, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/4737796b-0f38-4e4f-8f30-145f59cbe4a3.jpg' },
+      { id: 'maple-brie', name: 'Mountain Maple Brie (3/4 lb wheel)', price: 22, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/a82e59e3-d0fe-4616-813b-03329d4960d9.jpg' },
+      { id: 'clearwater', name: 'Clearwater Select (1/2 lb wedge)', price: 16, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/d41ad1a4-abbb-4d94-9fb6-6b26a488e58f.jpg' },
+      { id: 'brie', name: 'Brie (1/2 lb wedge)', price: 14, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/7fc02078-539a-43e8-8678-50427637838d.jpg' },
+      { id: 'cheddar', name: 'Clothbound Cheddar (1/2 lb wedge)', price: 14, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/d83167d7-fa49-4d10-b635-5188c5319212.jpeg' },
+      { id: 'smoked-gouda', name: 'Smoked Gouda (1/2 lb wedge)', price: 14, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/28be8053-4090-47ae-b988-9bd42548045d.jpeg' },
+      { id: 'feta', name: 'Marinated Feta (9 oz jar)', price: 15, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/8b495fa2-f518-4adc-ac2b-c6766b151278.jpeg' },
+      { id: 'dill-havarti', name: 'Dill Havarti (1/2 lb wedge)', price: 14, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/69a3f95a-35a5-4bbe-9c54-8798d5550619.jpg' },
+      { id: 'huckleberry', name: 'Huckleberry Havarti (1/2 lb wedge)', price: 14, img: 'https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/23eb3766-9aa3-4e16-9f33-b6ffafb57608.jpg' }
+    ];
+
+    const qty = {};
+    products.forEach(p => qty[p.id] = 0);
+
+    const container = document.getElementById('orderItems');
+    products.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'order-item';
+      row.innerHTML = `
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <div>
+          <h4>${p.name}</h4>
+          <div class="price">$${p.price.toFixed(2)} each</div>
+        </div>
+        <div class="qty-controls">
+          <button type="button" data-id="${p.id}" data-delta="-1" aria-label="Decrease">−</button>
+          <input type="number" min="0" max="20" value="0" data-id="${p.id}" id="qty-${p.id}">
+          <button type="button" data-id="${p.id}" data-delta="1" aria-label="Increase">+</button>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+
+    function updateSummary() {
+      let total = 0;
+      let lines = '';
+      let hasItems = false;
+      products.forEach(p => {
+        const q = qty[p.id] || 0;
+        if (q > 0) {
+          hasItems = true;
+          const lineTotal = q * p.price;
+          total += lineTotal;
+          lines += `<div class="line"><span>${q} × ${p.name}</span><span>$${lineTotal.toFixed(2)}</span></div>`;
+        }
+      });
+      const linesEl = document.getElementById('summaryLines');
+      const totalEl = document.getElementById('summaryTotal');
+      if (hasItems) {
+        linesEl.innerHTML = lines;
+        totalEl.style.display = 'block';
+        totalEl.querySelector('span').textContent = total.toFixed(2);
+      } else {
+        linesEl.innerHTML = '<p style="color: var(--muted);">No items selected yet.</p>';
+        totalEl.style.display = 'none';
+      }
+    }
+
+    container.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-id]');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      const delta = parseInt(btn.dataset.delta, 10);
+      qty[id] = Math.max(0, Math.min(20, (qty[id] || 0) + delta));
+      document.getElementById('qty-' + id).value = qty[id];
+      updateSummary();
+    });
+
+    container.addEventListener('change', e => {
+      if (e.target.matches('input[type="number"]')) {
+        const id = e.target.dataset.id;
+        qty[id] = Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0));
+        e.target.value = qty[id];
+        updateSummary();
+      }
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const fulfillment = document.getElementById('fulfillment').value;
+      const address = document.getElementById('address').value.trim();
+      const notes = document.getElementById('notes').value.trim();
+
+      let orderText = '';
+      let total = 0;
+      products.forEach(p => {
+        const q = qty[p.id] || 0;
+        if (q > 0) {
+          const line = q * p.price;
+          total += line;
+          orderText += `${q} × ${p.name}  —  $${line.toFixed(2)}\n`;
+        }
+      });
+
+      if (!orderText) {
+        alert('Please select at least one cheese.');
+        return;
+      }
+
+      const body = `Hello Brush Creek Creamery,
+
+I would like to place the following order:
+
+${orderText}
+Estimated total: $${total.toFixed(2)}
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || '(not provided)'}
+Fulfillment: ${fulfillment}
+${address ? 'Address:\n' + address + '\n' : ''}
+${notes ? 'Notes:\n' + notes + '\n' : ''}
+Please confirm availability, final pricing, and next steps. Thank you!
+
+— Sent from the Brush Creek Creamery website order form`;
+
+      const subject = encodeURIComponent('Cheese Order Request from ' + name);
+      const mailto = `mailto:info@brushcreekcreamery.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('nav').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

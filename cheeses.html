@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Cheeses | Brush Creek Creamery</title>
+  <meta name="description" content="Explore our award-winning artisan cheeses: Labneh, Orchard Blue, Brie, Cheddar, Gouda, and more. Handcrafted in Deary, Idaho.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img src="https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/8e3c90cf-0cd8-4296-aa35-04b9bf840949.png" alt="Brush Creek Creamery" class="logo-img"></a>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="cheeses.html" class="active">Our Cheeses</a>
+        <a href="story.html">Our Story</a>
+        <a href="awards.html">Awards</a>
+        <a href="order.html">Order</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero banner" style="min-height: 300px;">
+    <img class="banner-img" src="images/cheese-board.jpg" alt="Brush Creek cheese on a board with fruit">
+    <div class="banner-overlay"></div>
+    <div class="container hero-content">
+      <span class="tagline">Our Collection</span>
+      <h1>Choose a cheese</h1>
+      <p>Click any cheese below to learn more — how it’s made, what makes it special, and why it wins awards.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="cheese-grid" id="cheeseButtons"></div>
+      <div id="cheeseDetail" class="cheese-detail"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header">
+        <h2>From Our Creamery</h2>
+        <p>Making cheese by hand</p>
+      </div>
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <img src="images/making-brie.jpg" alt="Making brie by hand at Brush Creek Creamery" style="width: 100%; height: auto; max-height: 420px; object-fit: cover; object-position: center; display: block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="location">
+        <h3>Ready to taste them?</h3>
+        <p>Visit us at 307 Main Street in Deary, Idaho or place an order online.</p>
+        <p style="margin-top: 0.75rem;">
+          <a href="order.html" class="btn btn-primary">Order Cheeses</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <h4>Brush Creek Creamery</h4>
+          <p>Handcrafted artisan cheese<br>in the mountains of Idaho</p>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <p>307 Main St, Deary, ID 83823</p>
+          <p>Tue–Fri 7–2 · Sat 7–5</p>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p><a href="mailto:info@brushcreekcreamery.com">info@brushcreekcreamery.com</a></p>
+          <p>(208) 596-8571</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2016–2026 Brush Creek Creamery, LLC · Idaho Grade A Dairy Plant #16-96
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cheeses = {
+      labneh: {
+        name: "Marinated Labneh",
+        meta: "9 oz jar · $15 · Multiple 1st Place ACS awards · Good Food Award winner",
+        desc: "To create this award-winning Mediterranean soft cheese, we make yogurt with pasteurized cow’s milk and drain it through cheesecloth until it is thick. We then spice it with fresh garlic, parsley and salt. We shape it into balls and drop them into olive oil with peppercorns, fresh herbs and dried red pepper for garnish.",
+        note: "Delicious on pita bread and crackers or as a vegetable dip. Use the flavored oil on salads.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/01710366-d170-4ebb-bf61-8b8be5b7625b.jpg",
+        award: "Multiple 1st Place ACS · $15"
+      },
+      "orchard-blue": {
+        name: "Orchard Blue",
+        meta: "1/2 lb wedge · $16 · 1st Place ACS 2016 · Aged 2–3 months",
+        desc: "Sold as a 1/2 lb wedge. The creamy texture of our blue cheese is like none elsewhere. We dip the newly-made wheels in our own apple cider daily for 3 days. This raw cow milk cheese has a moist yet semi-firm texture and finishes with a tangy, blue flavor.",
+        note: "The cider bath gives it a subtle fruity complexity that sets it apart from ordinary blues.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/4737796b-0f38-4e4f-8f30-145f59cbe4a3.jpg",
+        award: "1st Place ACS 2016 · $16"
+      },
+      "maple-brie": {
+        name: "Mountain Maple Brie",
+        meta: "3/4 lb wheel · $22 · 1st Place ACS 2016 & 2017 · Aged 60 days",
+        desc: "We wrap this award-winning brie in mountain maple bark and top it with a local grape leaf boiled in wine. Made from raw cow milk and aged to a creamy, rich perfection at 60 days.",
+        note: "A true expression of Idaho terroir — bark, leaf, and milk all from the region.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/a82e59e3-d0fe-4616-813b-03329d4960d9.jpg",
+        award: "1st Place ACS · $22"
+      },
+      clearwater: {
+        name: "Clearwater Select",
+        meta: "1/2 lb wedge · $16 · 2nd Place ACS 2016 · Aged 60 days",
+        desc: "Sold as a 1/2 lb wedge. This award-winning brie is made from raw cow milk. The cheese is aged to a creamy, rich perfection at 60 days. It has a line of vegetable ash in the center and is wrapped in local grape leaves that have been boiled in wine, then finished with twine.",
+        note: "Elegant presentation and a distinctive ash line through the center.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/d41ad1a4-abbb-4d94-9fb6-6b26a488e58f.jpg",
+        award: "2nd Place ACS 2016 · $16"
+      },
+      brie: {
+        name: "Brie",
+        meta: "1/2 lb wedge · $14 · 3rd Place ACS 2016 · Aged 60 days",
+        desc: "Sold as a 1/2 lb wedge. Our classic award-winning brie is made from raw cow milk. The cheese is aged to a creamy, rich perfection at 60 days. It has a thin, edible, bloomy rind that encases the velvety, yellow center. There is a distinctive bite with a pronounced finish that lingers.",
+        note: "Perfect on a cheese board or melted into a sandwich.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/7fc02078-539a-43e8-8678-50427637838d.jpg",
+        award: "3rd Place ACS 2016 · $14"
+      },
+      cheddar: {
+        name: "Clothbound Cheddar",
+        meta: "1/2 lb wedge · $14 · Bandage-wrapped traditional method",
+        desc: "Sold as a 1/2 lb wedge. Each wheel of our white cheddar is rubbed with vegetable shortening and bandage-wrapped with cheesecloth in the traditional method of aging. This allows the cheese to breathe during aging for maximum flavor development.",
+        note: "All our cheeses are aged at least 60 days.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/d83167d7-fa49-4d10-b635-5188c5319212.jpeg",
+        award: "$14"
+      },
+      "smoked-gouda": {
+        name: "Smoked Gouda",
+        meta: "1/2 lb wedge · $14 · Washed-curd style",
+        desc: "Sold as a 1/2 lb wedge. Gouda is a washed-curd cheese which is pressed and smoked over local walnut shells and mesquite chips for a deliciously smoky and creamy product.",
+        note: "Excellent on grilled cheese sandwiches, in soups, or paired with apple slices.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/28be8053-4090-47ae-b988-9bd42548045d.jpeg",
+        award: "$14"
+      },
+      feta: {
+        name: "Marinated Feta",
+        meta: "9 oz jar · $15 · Aged 60 days",
+        desc: "Made with whole raw cow milk and aged 60 days, this feta has a bold aroma with a firm but delicate texture. The cheese is marinated in olive oil, fresh garlic, dried tomatoes and fresh basil for a unique combination of complementary flavors and textures.",
+        note: "Use the flavored oil on salads or bread. Keeps well in the refrigerator for months.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/8b495fa2-f518-4adc-ac2b-c6766b151278.jpeg",
+        award: "$15"
+      },
+      "dill-havarti": {
+        name: "Dill Havarti",
+        meta: "1/2 lb wedge · $14 · Mild & creamy",
+        desc: "Sold as a 1/2 lb wedge. One of our favorites — a mild, creamy Havarti with fresh dill mixed in. Add it to your next charcuterie board or on a sandwich for a bright, herby twist.",
+        note: "A crowd-pleaser that pairs beautifully with crackers and fruit.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/69a3f95a-35a5-4bbe-9c54-8798d5550619.jpg",
+        award: "$14"
+      },
+      huckleberry: {
+        name: "Huckleberry Havarti",
+        meta: "1/2 lb wedge · $14 · Mild with fruit",
+        desc: "Sold as a 1/2 lb wedge. Havarti is a mild, creamy cheese with huckleberry mixed in. Pairs nicely with fresh fruit or a drizzle of balsamic vinegar.",
+        note: "A sweet-savory Idaho specialty using local huckleberries.",
+        img: "https://us-ms.gr-cdn.com/getresponse-VIgiN/photos/23eb3766-9aa3-4e16-9f33-b6ffafb57608.jpg",
+        award: "$14"
+      }
+    };
+
+    const grid = document.getElementById('cheeseButtons');
+    const detailEl = document.getElementById('cheeseDetail');
+
+    Object.keys(cheeses).forEach(key => {
+      const c = cheeses[key];
+      const card = document.createElement('div');
+      card.className = 'cheese-card';
+      card.dataset.cheese = key;
+      card.innerHTML = `
+        <img src="${c.img}" alt="${c.name}" loading="lazy">
+        <div class="card-body">
+          <h3>${c.name}</h3>
+          ${c.award ? `<span class="award">${c.award}</span>` : ''}
+        </div>
+      `;
+      card.addEventListener('click', () => showCheese(key, card));
+      grid.appendChild(card);
+    });
+
+    function showCheese(key, cardEl) {
+      const c = cheeses[key];
+      document.querySelectorAll('.cheese-card').forEach(el => el.classList.remove('active'));
+      cardEl.classList.add('active');
+
+      detailEl.innerHTML = `
+        <img src="${c.img}" alt="${c.name}">
+        <h3>${c.name}</h3>
+        <p class="meta">${c.meta}</p>
+        <p>${c.desc}</p>
+        <p><em>${c.note}</em></p>
+        <p style="margin-top: 1.25rem;">
+          <a href="order.html" class="btn btn-primary">Add to Order</a>
+        </p>
+      `;
+      detailEl.classList.add('visible');
+      detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('nav').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
